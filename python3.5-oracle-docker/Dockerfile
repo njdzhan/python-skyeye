@@ -6,17 +6,25 @@
 ##############################################
 FROM centos:7
 MAINTAINER han # 指定作者信息
+
+#RUN 执行以下命令 
+RUN mkdir /home/docker
+
+#ADD  
+ADD oracle.py /home/docker
+EXPOSE 9800
+
 RUN set -ex \
     # 预安装所需组件
     && yum install -y wget tar libffi-devel zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gcc make initscripts \
-    && wget https://www.python.org/ftp/python/3.5.0/Python-3.5.0.tgz \
-    && tar -zxvf Python-3.5.0.tgz \
-    && cd Python-3.5.0 \
+    && wget http://192.168.121.244/Python-3.8.5.tgz \
+    && tar -zxvf Python-3.8.5.tgz \
+    && cd Python-3.8.5 \
     && ./configure prefix=/usr/local/python3 \
     && make \
     && make install \
     && make clean \
-    && rm -rf /Python-3.5.0* \
+    && rm -rf /Python-3.8.5* \
     && yum install -y epel-release \
     && yum install -y python-pip
 # 设置默认为python3
@@ -25,7 +33,7 @@ RUN set -ex \
     && mv /usr/bin/python /usr/bin/python27 \
     && mv /usr/bin/pip /usr/bin/pip-python2.7 \
     # 配置默认为python3
-    && ln -s /usr/local/python3/bin/python3.5 /usr/bin/python \
+    && ln -s /usr/local/python3/bin/python3.8 /usr/bin/python \
     && ln -s /usr/local/python3/bin/pip3 /usr/bin/pip
 # 修复因修改python版本导致yum失效问题
 RUN set -ex \
@@ -63,4 +71,6 @@ RUN set -ex \
     && pip install cx_Oracle \
     # 安装prometheus_client
     && pip install prometheus_client
+
+CMD ["python", "/home/docker/oracle.py"]
 
