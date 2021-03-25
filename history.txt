@@ -1,0 +1,42 @@
+288  rpm -ivh oracle-instantclient11.2-basic-11.2.0.4.0-1.x86_64.rpm 
+  289  python oracle.py 
+  290  ps
+  291  ls /etc/ld.so.conf
+  292  cat /etc/ld.so.conf
+  293  cat /etc/ld.so.conf.d/
+  294  ll /etc/ld.so.conf.d/
+  295  cd /usr/lib/oracle/
+  296  ls
+  297  cd 11.2/
+  298  ls
+  299  cd client64/
+  300  ls
+  301  cd lib/
+  302  ls
+  303  ll
+  304  ln -s libclntsh.so.11.1 libclntsh.so
+  305  ln -s libocci.so.11.1 libocci.so
+  306  ll
+  307  cd ~
+  308  ls
+  309  python oracle.py 
+  310  sh -c "echo /usr/lib/oracle/11.2/client64/lib > /etc/ld.so.conf.d/oracle-instantclient.conf"
+  311  export LD_LIBRARY_PATH=/usr/lib/oracle/11.2/client64/lib:$LD_LIBRARY_PATH
+  312  ldconfig
+  313  python oracle.py 
+  314  export NLS_LANG=american_america.AL32UTF8
+  315  python oracle.py 
+  316  ps -a
+  317  python oracle.py 
+  318  vim ~/.bashrc 
+  319  source ~/.bashrc 
+  320  history
+  321  python oracle.py 
+  322  python 3oracle.py 
+  323  python 1oracle.py 
+  324  ifconfig
+  325  ls
+  326  history
+  327  history | grep prometh
+  328  ./prometheus --config.file=prometheus.yml
+  329  history
